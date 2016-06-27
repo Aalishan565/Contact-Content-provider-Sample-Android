@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ContactPoc</string>
+    <string name="btn_lbl_show_contact">Show Contact</string>
+</resources>
