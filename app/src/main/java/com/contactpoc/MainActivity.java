@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mContactName = new ArrayList();
         mContactNumber = new ArrayList();
         mBtnShowContact = (Button) findViewById(R.id.btn_show_contact);
-        mLvContactList= (ListView) findViewById(R.id.lv_contact_list);
+        mLvContactList = (ListView) findViewById(R.id.lv_contact_list);
         mBtnShowContact.setOnClickListener(this);
 
     }
@@ -55,11 +55,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             new String[]{id}, null);
                     while (pCur.moveToNext()) {
                         String phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        mContactName.add(name);
-                        mContactNumber.add(phoneNo);
-                        mContAdapter= new ContactAdapter(this,mContactName,mContactNumber);
-                        mLvContactList.setAdapter(mContAdapter);
-                       // Toast.makeText(this, "Name: " + name + ", Phone No: " + phoneNo, Toast.LENGTH_SHORT).show();
+
+                        if (mContactName.contains(name) && mContactNumber.contains(phoneNo)) {
+
+                        } else {
+                            mContactName.add(name);
+                            mContactNumber.add(phoneNo);
+                            mContAdapter = new ContactAdapter(this, mContactName, mContactNumber);
+                            mLvContactList.setAdapter(mContAdapter);
+                            // Toast.makeText(this, "Name: " + name + ", Phone No: " + phoneNo, Toast.LENGTH_SHORT).show();
+                        }
                     }
                     pCur.close();
                 }
